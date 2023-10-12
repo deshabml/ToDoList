@@ -36,11 +36,22 @@ struct ToDoCell: View {
                     .background(getColor())
             }
         }.padding()
-            .background(.white)
+            .background(.gray)
             .cornerRadius(12)
             .shadow(radius: 1)
-
     }
+}
+
+
+
+#Preview {
+    ToDoCell(todo: ToDo(title: "Task title",
+                        descrioption: "Task descrioption",
+                        deadline: Date(),
+                        category: .notUrgentImp))
+}
+
+extension ToDoCell {
 
     func getDate() -> String {
         let deadline = todo.deadline
@@ -72,11 +83,4 @@ struct ToDoCell: View {
         default: return .blue
         }
     }
-}
-
-#Preview {
-    ToDoCell(todo: ToDo(title: "Task title",
-                        descrioption: "Task descrioption",
-                        deadline: Date(),
-                        category: .notUrgentImp))
 }

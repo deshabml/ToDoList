@@ -8,8 +8,15 @@
 import SwiftUI
 
 struct SettingsView: View {
+
+    @AppStorage(PersistedKey.showArchive.rawValue) var showArchive: Bool = true
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Text("Show archive?")
+            Spacer()
+            Toggle("", isOn: $showArchive)
+        }.padding()
     }
 }
 

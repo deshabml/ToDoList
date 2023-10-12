@@ -10,17 +10,16 @@ import SwiftUI
 struct SetTodoView: View {
 
     @StateObject var viewModel: SetTodoViewModel
-    @Environment (\.dismiss) var dismiss
     @EnvironmentObject var mainViewModel: HomeViewModel
 
     var body: some View {
         VStack(spacing: 16) {
-            RoundedTextField(text: $viewModel.taskTitle, placeholder: "Название задачи")
-            RoundedTextField(text: $viewModel.taskDescription, placeholder: "Описание задачи")
-            DatePicker("Дедлайн: ",
+            RoundedTextField(text: $viewModel.taskTitle, placeholder: "Task name")
+            RoundedTextField(text: $viewModel.taskDescription, placeholder: "Task description")
+            DatePicker("Deadline: ",
                        selection: $viewModel.deadline)
             .datePickerStyle(.compact)
-            Picker("Выберите категорию:",
+            Picker("Select a category:",
                    selection: $viewModel.taskCategory) {
                 ForEach(viewModel.categories, id: \.self) { category in
                     Text(category.rawValue).tag(category)
@@ -33,9 +32,9 @@ struct SetTodoView: View {
                     viewModel.saveTodo()
                 }
                 mainViewModel.getAllTodos()
-                dismiss()
+                dismissScreen()
             } label: {
-                Text("Сохранить")
+                Text("Save")
                     .padding(.horizontal, 40)
                     .padding(.vertical, 12)
                     .background(.blue)
@@ -50,4 +49,13 @@ struct SetTodoView: View {
 
 #Preview {
     SetTodoView(viewModel: SetTodoViewModel())
+}
+
+extension SetTodoView {
+
+    private func dismissScreen() {
+        withAnimation {
+            mainViewModel.showSetTodoView = false
+        }
+    }
 }

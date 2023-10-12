@@ -10,6 +10,7 @@ import Foundation
 class HomeViewModel: ObservableObject {
 
     @Published var todos: [ToDo] = []
+    @Published var showSetTodoView: Bool = false
     var showArchive: Bool {
         let showArchive = UserDefaults.standard.bool(forKey: PersistedKey.showArchive.rawValue)
         return showArchive

@@ -14,7 +14,7 @@ struct TodoTable: View {
     var body: some View {
         List {
             if !viewModel.actualTodos.isEmpty {
-                Section("Актуальные задачи:") {
+                Section("Current tasks:") {
                     ForEach(0 ..< viewModel.actualTodos.count, id: \.self) { index in
                         NavigationLink {
                             SetTodoView(viewModel: SetTodoViewModel(todo: viewModel.actualTodos[index]))
@@ -42,7 +42,7 @@ struct TodoTable: View {
                 }
             }
             if (!viewModel.completedTodos.isEmpty && viewModel.showArchive) {
-                Section("Выполненные:") {
+                Section("Completed:") {
                     ForEach(0 ..< viewModel.completedTodos.count, id: \.self) { index in
 
                         NavigationLink {
@@ -82,4 +82,5 @@ struct TodoTable: View {
 
 #Preview {
     TodoTable()
+        .environmentObject(HomeViewModel())
 }

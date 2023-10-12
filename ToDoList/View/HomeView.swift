@@ -10,7 +10,6 @@ import SwiftUI
 struct HomeView: View {
 
     @StateObject var viewModel = HomeViewModel()
-    @State var showSetTodoView = false
 
     var body: some View {
         NavigationView {
@@ -18,23 +17,23 @@ struct HomeView: View {
                 TodoTable()
                     .environmentObject(viewModel)
                 if viewModel.todos.isEmpty {
-                    Text("Задач ещё нет! Добавьте первую!")
+                    Text("There are no tasks yet! Add the first one!")
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(Color.white)
                 }
-                if showSetTodoView {
+                if viewModel.showSetTodoView {
                     Rectangle()
                         .ignoresSafeArea()
                         .opacity(0.3)
                         .onTapGesture {
                             withAnimation {
-                                showSetTodoView.toggle()
+                                viewModel.showSetTodoView.toggle()
                             }
                         }
                     SetTodoView(viewModel: SetTodoViewModel())
                         .environmentObject(viewModel)
                         .background {
-                            Image("bg")
+                            Image(.bg)
                         }
                         .transition(.move(edge: .bottom))
                         .cornerRadius(18)
@@ -43,22 +42,14 @@ struct HomeView: View {
                 }
             }
             .overlay(alignment: .bottomTrailing) {
-                Button {
-                    withAnimation {
-                        showSetTodoView.toggle()
-                    }
-                } label: {
-                    Image(systemName: "plus")
-                        .font(.title2)
-                        .bold()
-                        .padding()
-                        .foregroundColor(.white)
-                        .background(.mint)
-                        .cornerRadius(40)
-                        .padding(8)
-                }
+                buttonPlus()
             }
-
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background{
+            Image("bgHome")
+                .ignoresSafeArea()
+                .scaledToFill()
         }
         .onAppear {
             viewModel.getAllTodos()
@@ -68,4 +59,24 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
+}
+
+extension HomeView {
+
+    private func buttonPlus() -> some View {
+        Button {
+            withAnimation {
+                viewModel.showSetTodoView.toggle()
+            }
+        } label: {
+            Image(systemName: "plus")
+                .font(.title2)
+                .bold()
+                .padding()
+                .foregroundColor(.white)
+                .background(.mint)
+                .cornerRadius(40)
+                .padding(8)
+        }
+    }
 }
