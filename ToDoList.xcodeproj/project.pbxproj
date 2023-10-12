@@ -94,9 +94,10 @@
 		DDD6C8D52AD8480800327F9E /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
-				DDD6C8D62AD8480800327F9E /* ToDoListApp.swift */,
-				DDD6C8D82AD8480800327F9E /* ContentView.swift */,
-				DDD6C8DA2AD8480B00327F9E /* Assets.xcassets */,
+				DDD6C9022AD84CF100327F9E /* Application */,
+				DDD6C9032AD84D0C00327F9E /* View */,
+				DDD6C9002AD84CA700327F9E /* Coordinator */,
+				DDD6C9012AD84CC200327F9E /* Supporting files */,
 				DDD6C8DC2AD8480B00327F9E /* Preview Content */,
 			);
 			path = ToDoList;
@@ -125,6 +126,37 @@
 				DDD6C8F32AD8480B00327F9E /* ToDoListUITestsLaunchTests.swift */,
 			);
 			path = ToDoListUITests;
+			sourceTree = "<group>";
+		};
+		DDD6C9002AD84CA700327F9E /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		DDD6C9012AD84CC200327F9E /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				DDD6C8DA2AD8480B00327F9E /* Assets.xcassets */,
+			);
+			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		DDD6C9022AD84CF100327F9E /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				DDD6C8D62AD8480800327F9E /* ToDoListApp.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		DDD6C9032AD84D0C00327F9E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DDD6C8D82AD8480800327F9E /* ContentView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
