@@ -8,12 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		DDD6C8D72AD8480800327F9E /* ToDoListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD6C8D62AD8480800327F9E /* ToDoListApp.swift */; };
-		DDD6C8D92AD8480800327F9E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD6C8D82AD8480800327F9E /* ContentView.swift */; };
 		DDD6C8DB2AD8480B00327F9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDD6C8DA2AD8480B00327F9E /* Assets.xcassets */; };
 		DDD6C8DE2AD8480B00327F9E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDD6C8DD2AD8480B00327F9E /* Preview Assets.xcassets */; };
 		DDD6C8E82AD8480B00327F9E /* ToDoListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD6C8E72AD8480B00327F9E /* ToDoListTests.swift */; };
 		DDD6C8F22AD8480B00327F9E /* ToDoListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD6C8F12AD8480B00327F9E /* ToDoListUITests.swift */; };
 		DDD6C8F42AD8480B00327F9E /* ToDoListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD6C8F32AD8480B00327F9E /* ToDoListUITestsLaunchTests.swift */; };
+		DDD6C9052AD850D600327F9E /* MyTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD6C9042AD850D600327F9E /* MyTab.swift */; };
+		DDD6C9072AD8512900327F9E /* MyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD6C9062AD8512900327F9E /* MyPage.swift */; };
+		DDD6C9092AD851FE00327F9E /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD6C9082AD851FE00327F9E /* Coordinator.swift */; };
+		DDD6C90B2AD852CD00327F9E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD6C90A2AD852CD00327F9E /* MainView.swift */; };
+		DDD6C90D2AD8536100327F9E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD6C90C2AD8536100327F9E /* HomeView.swift */; };
+		DDD6C90F2AD8537800327F9E /* TodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD6C90E2AD8537800327F9E /* TodoView.swift */; };
+		DDD6C9112AD8539400327F9E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD6C9102AD8539400327F9E /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +42,6 @@
 /* Begin PBXFileReference section */
 		DDD6C8D32AD8480800327F9E /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD6C8D62AD8480800327F9E /* ToDoListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListApp.swift; sourceTree = "<group>"; };
-		DDD6C8D82AD8480800327F9E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DDD6C8DA2AD8480B00327F9E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDD6C8DD2AD8480B00327F9E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DDD6C8E32AD8480B00327F9E /* ToDoListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +49,13 @@
 		DDD6C8ED2AD8480B00327F9E /* ToDoListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD6C8F12AD8480B00327F9E /* ToDoListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListUITests.swift; sourceTree = "<group>"; };
 		DDD6C8F32AD8480B00327F9E /* ToDoListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DDD6C9042AD850D600327F9E /* MyTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTab.swift; sourceTree = "<group>"; };
+		DDD6C9062AD8512900327F9E /* MyPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPage.swift; sourceTree = "<group>"; };
+		DDD6C9082AD851FE00327F9E /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		DDD6C90A2AD852CD00327F9E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		DDD6C90C2AD8536100327F9E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		DDD6C90E2AD8537800327F9E /* TodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoView.swift; sourceTree = "<group>"; };
+		DDD6C9102AD8539400327F9E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +143,9 @@
 		DDD6C9002AD84CA700327F9E /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
+				DDD6C9042AD850D600327F9E /* MyTab.swift */,
+				DDD6C9062AD8512900327F9E /* MyPage.swift */,
+				DDD6C9082AD851FE00327F9E /* Coordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -154,7 +169,10 @@
 		DDD6C9032AD84D0C00327F9E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DDD6C8D82AD8480800327F9E /* ContentView.swift */,
+				DDD6C90A2AD852CD00327F9E /* MainView.swift */,
+				DDD6C90C2AD8536100327F9E /* HomeView.swift */,
+				DDD6C90E2AD8537800327F9E /* TodoView.swift */,
+				DDD6C9102AD8539400327F9E /* SettingsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -289,7 +307,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDD6C8D92AD8480800327F9E /* ContentView.swift in Sources */,
+				DDD6C90D2AD8536100327F9E /* HomeView.swift in Sources */,
+				DDD6C90F2AD8537800327F9E /* TodoView.swift in Sources */,
+				DDD6C9112AD8539400327F9E /* SettingsView.swift in Sources */,
+				DDD6C90B2AD852CD00327F9E /* MainView.swift in Sources */,
+				DDD6C9052AD850D600327F9E /* MyTab.swift in Sources */,
+				DDD6C9092AD851FE00327F9E /* Coordinator.swift in Sources */,
+				DDD6C9072AD8512900327F9E /* MyPage.swift in Sources */,
 				DDD6C8D72AD8480800327F9E /* ToDoListApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
