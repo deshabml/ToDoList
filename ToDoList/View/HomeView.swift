@@ -8,9 +8,64 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+    @StateObject var viewModel: MainViewModel
+    @State var showSetTodoView = false
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+        NavigationView {
+            ZStack {
+                TodoTable()
+                    .environmentObject(viewModel)
+                if viewModel.todos.isEmpty {
+                    Text("Задач ещё нет! Добавьте первую!")
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color.white)
+                }
+                if showSetTodoView {
+                    Rectangle()
+                        .ignoresSafeArea()
+                        .opacity(0.3)
+                        .onTapGesture {
+                            withAnimation {
+                                showSetTodoView.toggle()
+                            }
+                        }
+                        SetTodoView(viewModel: SetTodoViewModel(user: viewModel.user))
+                            .environmentObject(viewModel)
+                            .background {
+                                Image("bg")
+                            }
+                            .transition(.move(edge: .bottom))
+                            .cornerRadius(18)
+                            .shadow(radius: 2)
+                            .padding()
+                }
+
+            }
+            .overlay(alignment: .bottomTrailing) {
+                Button {
+//                    SetTodoView(viewModel: SetTodoViewModel(user: viewModel.user))
+//                        .environmentObject(viewModel)
+                    withAnimation {
+                        showSetTodoView.toggle()
+                    }
+                } label: {
+                    Image(systemName: "plus")
+                        .font(.title2)
+                        .bold()
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(.mint)
+                        .cornerRadius(40)
+                        .padding(8)
+                }
+            }
+
+        }
+        .onAppear {
+            viewModel.getAllTodos()
+        }
 }
 
 #Preview {
