@@ -28,12 +28,12 @@ class ToDo: Object, Identifiable {
 }
 
 extension ToDo {
-    override var description: String { "\(self.title). C дедлайном: \(self.deadline)" }
+    override var description: String { "\(self.title). With a deadline: \(self.deadline)" }
 }
 
 enum TodoCategory: String, CaseIterable {
-    case urgentImp = "Важное срочное"
-    case urgentNotImp = "Важное несрочное"
-    case notUrgentImp = "Неважное срочное"
-    case notUrgentNotImp = "Неважное несрочное"
+    case urgentImp = "Important urgent"
+    case urgentNotImp = "Important non-urgent"
+    case notUrgentImp = "Unimportant urgent"
+    case notUrgentNotImp = "Unimportant non-urgent"
 }

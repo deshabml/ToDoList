@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
-    
-    @StateObject var viewModel: MainViewModel
+
+    @StateObject var viewModel = HomeViewModel()
     @State var showSetTodoView = false
 
     var body: some View {
@@ -31,22 +31,19 @@ struct HomeView: View {
                                 showSetTodoView.toggle()
                             }
                         }
-                        SetTodoView(viewModel: SetTodoViewModel(user: viewModel.user))
-                            .environmentObject(viewModel)
-                            .background {
-                                Image("bg")
-                            }
-                            .transition(.move(edge: .bottom))
-                            .cornerRadius(18)
-                            .shadow(radius: 2)
-                            .padding()
+                    SetTodoView(viewModel: SetTodoViewModel())
+                        .environmentObject(viewModel)
+                        .background {
+                            Image("bg")
+                        }
+                        .transition(.move(edge: .bottom))
+                        .cornerRadius(18)
+                        .shadow(radius: 2)
+                        .padding()
                 }
-
             }
             .overlay(alignment: .bottomTrailing) {
                 Button {
-//                    SetTodoView(viewModel: SetTodoViewModel(user: viewModel.user))
-//                        .environmentObject(viewModel)
                     withAnimation {
                         showSetTodoView.toggle()
                     }
@@ -66,6 +63,7 @@ struct HomeView: View {
         .onAppear {
             viewModel.getAllTodos()
         }
+    }
 }
 
 #Preview {
