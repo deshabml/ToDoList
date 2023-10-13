@@ -36,7 +36,7 @@ struct ToDoCell: View {
                     .background(getColor())
             }
         }.padding()
-            .background(.gray)
+            .background(Color(.liteGrey))
             .cornerRadius(12)
             .shadow(radius: 1)
     }

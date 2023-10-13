@@ -30,10 +30,3 @@ class ToDo: Object, Identifiable {
 extension ToDo {
     override var description: String { "\(self.title). With a deadline: \(self.deadline)" }
 }
-
-enum TodoCategory: String, CaseIterable {
-    case urgentImp = "Important urgent"
-    case urgentNotImp = "Important non-urgent"
-    case notUrgentImp = "Unimportant urgent"
-    case notUrgentNotImp = "Unimportant non-urgent"
-}

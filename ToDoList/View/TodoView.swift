@@ -8,11 +8,60 @@
 import SwiftUI
 
 struct TodoView: View {
+    
+    @StateObject var viewModel = TodoViewModel()
+    @EnvironmentObject var coordinator: Coordinator
+    @State var isEdit: Bool = false
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(spacing: 16) {
+            RoundedTextField(text: $viewModel.taskTitle, placeholder: "Task name")
+            RoundedTextField(text: $viewModel.taskDescription, placeholder: "Task description")
+            DatePicker("Deadline: ",
+                       selection: $viewModel.deadline)
+            .datePickerStyle(.compact)
+            Picker("Select a category:",
+                   selection: $viewModel.taskCategory) {
+                ForEach(viewModel.categories, id: \.self) { category in
+                    Text(category.rawValue).tag(category)
+                }
+            }
+            Button {
+                if let _ = viewModel.todo {
+                    viewModel.updateTodo()
+                } else {
+                    viewModel.saveTodo()
+                }
+                coordinator.getAllTodos()
+                dismissScreen()
+            } label: {
+                Text("Save")
+                    .padding(.horizontal, 40)
+                    .padding(.vertical, 12)
+                    .background(.blue)
+                    .cornerRadius(12)
+                    .foregroundColor(.white)
+                    .fontWeight(.bold)
+            }
+        }
+        .padding()
+        .onAppear {
+            if isEdit {
+                viewModel.setup(todo: coordinator.todo)
+            }
+        }
     }
 }
 
 #Preview {
-    TodoView()
+    TodoView(viewModel: TodoViewModel())
+}
+
+extension TodoView {
+
+    private func dismissScreen() {
+        withAnimation {
+            coordinator.showSetTodoView = false
+        }
+    }
 }

@@ -9,22 +9,22 @@ import SwiftUI
 
 struct TodoTable: View {
 
-    @EnvironmentObject var viewModel: HomeViewModel
+    @EnvironmentObject var coordinator: Coordinator
 
     var body: some View {
         List {
-            if !viewModel.actualTodos.isEmpty {
+            if !coordinator.actualTodos.isEmpty {
                 Section("Current tasks:") {
-                    ForEach(0 ..< viewModel.actualTodos.count, id: \.self) { index in
-                        NavigationLink {
-                            SetTodoView(viewModel: SetTodoViewModel(todo: viewModel.actualTodos[index]))
-                                .environmentObject(viewModel)
+                    ForEach(0 ..< coordinator.actualTodos.count, id: \.self) { index in
+                        Button {
+                            coordinator.goToDoDetail(coordinator.actualTodos[index])
+                            /*rdinator.getPage(.todo, todo: coordinator.completedTodos[index]*/
                         } label: {
-                            ToDoCell(todo: viewModel.actualTodos[index])
+                            ToDoCell(todo: coordinator.actualTodos[index])
                         }
                         .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                             Button {
-                                viewModel.deleteTodo(viewModel.actualTodos[index])
+                                coordinator.deleteTodo(coordinator.actualTodos[index])
                             } label: {
                                 Image(systemName: "trash")
                             }
@@ -32,30 +32,53 @@ struct TodoTable: View {
                         }
                         .swipeActions(edge: .leading, allowsFullSwipe: true) {
                             Button {
-                                viewModel.completeTodo(viewModel.actualTodos[index])
+                                coordinator.completeTodo(coordinator.actualTodos[index])
                             } label: {
                                 Image(systemName: "checkmark")
                             }
                             .tint(.green)
                         }
+
+//                        NavigationLink {
+//                            TodoView(viewModel: TodoViewModel(todo: coordinator.actualTodos[index]))
+//                                .environmentObject(coordinator)
+//                        } label: {
+//                            ToDoCell(todo: coordinator.actualTodos[index])
+//                        }
+//                        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+//                            Button {
+//                                coordinator.deleteTodo(coordinator.actualTodos[index])
+//                            } label: {
+//                                Image(systemName: "trash")
+//                            }
+//                            .tint(.red)
+//                        }
+//                        .swipeActions(edge: .leading, allowsFullSwipe: true) {
+//                            Button {
+//                                coordinator.completeTodo(coordinator.actualTodos[index])
+//                            } label: {
+//                                Image(systemName: "checkmark")
+//                            }
+//                            .tint(.green)
+//                        }
                     }
                 }
             }
-            if (!viewModel.completedTodos.isEmpty && viewModel.showArchive) {
+            if (!coordinator.completedTodos.isEmpty && coordinator.showArchive) {
                 Section("Completed:") {
-                    ForEach(0 ..< viewModel.completedTodos.count, id: \.self) { index in
+                    ForEach(0 ..< coordinator.completedTodos.count, id: \.self) { index in
+                        Button {
+                            coordinator.goToDoDetail(coordinator.completedTodos[index])
 
-                        NavigationLink {
-                            SetTodoView(viewModel: SetTodoViewModel(todo: viewModel.completedTodos[index]))
-                                .environmentObject(viewModel)
+//                            coordinator.getPage(.todo, todo: coordinator.completedTodos[index])
                         } label: {
                             HStack {
-                                Text(viewModel.completedTodos[index].title)
+                                Text(coordinator.completedTodos[index].title)
                                 Spacer()
-                                Text(viewModel.completedTodos[index].category)
+                                Text(coordinator.completedTodos[index].category)
                             }                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                 Button {
-                                    viewModel.deleteTodo(viewModel.completedTodos[index])
+                                    coordinator.deleteTodo(coordinator.completedTodos[index])
                                 } label: {
                                     Image(systemName: "trash")
                                 }
@@ -63,7 +86,7 @@ struct TodoTable: View {
                             }
                             .swipeActions(edge: .leading, allowsFullSwipe: true) {
                                 Button {
-                                    viewModel.decompleteTodo(viewModel.completedTodos[index])
+                                    coordinator.decompleteTodo(coordinator.completedTodos[index])
                                 } label: {
                                     Image(systemName: "arrow.uturn.left")
                                 }
@@ -71,6 +94,33 @@ struct TodoTable: View {
                                 .tint(.orange)
                             }
                         }
+
+//                        NavigationLink {
+//                            TodoView(viewModel: TodoViewModel(todo: coordinator.completedTodos[index]))
+//                                .environmentObject(coordinator)
+//                        } label: {
+//                            HStack {
+//                                Text(coordinator.completedTodos[index].title)
+//                                Spacer()
+//                                Text(coordinator.completedTodos[index].category)
+//                            }                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+//                                Button {
+//                                    coordinator.deleteTodo(coordinator.completedTodos[index])
+//                                } label: {
+//                                    Image(systemName: "trash")
+//                                }
+//                                .tint(.red)
+//                            }
+//                            .swipeActions(edge: .leading, allowsFullSwipe: true) {
+//                                Button {
+//                                    coordinator.decompleteTodo(coordinator.completedTodos[index])
+//                                } label: {
+//                                    Image(systemName: "arrow.uturn.left")
+//                                }
+//
+//                                .tint(.orange)
+//                            }
+//                        }
                     }
                 }
             }
@@ -82,5 +132,5 @@ struct TodoTable: View {
 
 #Preview {
     TodoTable()
-        .environmentObject(HomeViewModel())
+        .environmentObject(Coordinator())
 }

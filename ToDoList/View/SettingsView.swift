@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
 
+    @EnvironmentObject var coordinator: Coordinator
     @AppStorage(PersistedKey.showArchive.rawValue) var showArchive: Bool = true
 
     var body: some View {

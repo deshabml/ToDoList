@@ -9,29 +9,29 @@ import SwiftUI
 
 struct HomeView: View {
 
-    @StateObject var viewModel = HomeViewModel()
+    @EnvironmentObject var coordinator: Coordinator
 
     var body: some View {
-        NavigationView {
+        VStack {
             ZStack {
                 TodoTable()
-                    .environmentObject(viewModel)
-                if viewModel.todos.isEmpty {
+                    .environmentObject(coordinator)
+                if coordinator.todos.isEmpty {
                     Text("There are no tasks yet! Add the first one!")
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(Color.white)
                 }
-                if viewModel.showSetTodoView {
+                if coordinator.showSetTodoView {
                     Rectangle()
                         .ignoresSafeArea()
                         .opacity(0.3)
                         .onTapGesture {
                             withAnimation {
-                                viewModel.showSetTodoView.toggle()
+                                coordinator.showSetTodoView.toggle()
                             }
                         }
-                    SetTodoView(viewModel: SetTodoViewModel())
-                        .environmentObject(viewModel)
+                    TodoView(viewModel: TodoViewModel())
+                        .environmentObject(coordinator)
                         .background {
                             Image(.bg)
                         }
@@ -47,18 +47,19 @@ struct HomeView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background{
-            Image("bgHome")
+            Image(.bgHome)
                 .ignoresSafeArea()
                 .scaledToFill()
         }
         .onAppear {
-            viewModel.getAllTodos()
+            coordinator.getAllTodos()
         }
     }
 }
 
 #Preview {
     HomeView()
+        .environmentObject(Coordinator())
 }
 
 extension HomeView {
@@ -66,7 +67,7 @@ extension HomeView {
     private func buttonPlus() -> some View {
         Button {
             withAnimation {
-                viewModel.showSetTodoView.toggle()
+                coordinator.showSetTodoView.toggle()
             }
         } label: {
             Image(systemName: "plus")
