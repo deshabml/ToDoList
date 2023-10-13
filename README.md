@@ -1,6 +1,6 @@
 # ToDoList
 
-## Технологии
+## Technologies
 
 - Swift
 - MVVM + Coordinator
