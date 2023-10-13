@@ -23,6 +23,10 @@ final class Coordinator: ObservableObject {
     }
     var todo = ToDo()
 
+    init() {
+        getAllTodos()
+    }
+
     func goHome() {
         path.removeLast(path.count)
     }
@@ -38,7 +42,7 @@ final class Coordinator: ObservableObject {
             case .home:
                 HomeView()
             case .todo:
-                TodoView()
+                TodoView(isEdit: true)
             case .settings:
                 SettingsView()
         }

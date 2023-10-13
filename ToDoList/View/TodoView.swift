@@ -44,6 +44,9 @@ struct TodoView: View {
                     .fontWeight(.bold)
             }
         }
+        .background {
+            Image(.bg)
+        }
         .padding()
         .onAppear {
             if isEdit {

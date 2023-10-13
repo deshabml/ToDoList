@@ -40,6 +40,7 @@ extension MainView {
         .preferredColorScheme(.light)
     }
 
+    @ViewBuilder
     private func tabItem(myPage: MyPage,imageName: String, myTab: MyTab) -> some View {
         NavigationStack(path: $coordinator.path) {
             coordinator.getPage(myPage)

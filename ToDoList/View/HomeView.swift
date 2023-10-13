@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct HomeView: View {
-    
+
     @EnvironmentObject var coordinator: Coordinator
-    
+
     var body: some View {
         ZStack {
             VStack {
                 if coordinator.todos.isEmpty {
-                    thereIsNoTask()
+                    thereIsNoTask
                 } else {
                     TodoTable()
                         .environmentObject(coordinator)
@@ -27,13 +27,10 @@ struct HomeView: View {
                     .ignoresSafeArea()
                     .scaledToFill()
             }
-            .onAppear {
-                coordinator.getAllTodos()
-            }
             .overlay(alignment: .bottomTrailing) {
-                buttonPlus()
+                buttonPlus
             }
-            popUpScreenTodoView()
+            popUpScreenTodoView
         }
     }
 }
@@ -44,8 +41,8 @@ struct HomeView: View {
 }
 
 extension HomeView {
-    
-    private func buttonPlus() -> some View {
+
+    private var buttonPlus: some View {
         Button {
             withAnimation {
                 coordinator.showSetTodoView.toggle()
@@ -61,15 +58,15 @@ extension HomeView {
                 .padding(8)
         }
     }
-    
-    private func thereIsNoTask() -> some View {
+
+    private var thereIsNoTask: some View {
         Text("There are no tasks yet! Add the first one!")
             .padding()
             .background(.white)
             .clipShape(RoundedRectangle(cornerRadius: 10))
     }
-    
-    private func popUpScreenTodoView() -> some View {
+
+    private var popUpScreenTodoView: some View {
         Group {
             if coordinator.showSetTodoView {
                 Rectangle()
@@ -82,9 +79,6 @@ extension HomeView {
                     }
                 TodoView(viewModel: TodoViewModel())
                     .environmentObject(coordinator)
-                    .background {
-                        Image(.bg)
-                    }
                     .transition(.move(edge: .bottom))
                     .cornerRadius(18)
                     .shadow(radius: 2)

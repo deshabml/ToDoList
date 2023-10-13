@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DD0AC4B52AD87A4400A24968 /* SetTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0AC4B42AD87A4400A24968 /* SetTodoView.swift */; };
-		DD0AC4B72AD87A7200A24968 /* SetTodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0AC4B62AD87A7200A24968 /* SetTodoViewModel.swift */; };
 		DD0AC4B92AD87B3000A24968 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0AC4B82AD87B3000A24968 /* RoundedTextField.swift */; };
 		DD0AC4BB2AD87BF200A24968 /* ToDoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0AC4BA2AD87BF200A24968 /* ToDoCell.swift */; };
 		DD0AC4BD2AD87CC700A24968 /* PersistedKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0AC4BC2AD87CC600A24968 /* PersistedKey.swift */; };
@@ -53,8 +51,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DD0AC4B42AD87A4400A24968 /* SetTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTodoView.swift; sourceTree = "<group>"; };
-		DD0AC4B62AD87A7200A24968 /* SetTodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTodoViewModel.swift; sourceTree = "<group>"; };
 		DD0AC4B82AD87B3000A24968 /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
 		DD0AC4BA2AD87BF200A24968 /* ToDoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoCell.swift; sourceTree = "<group>"; };
 		DD0AC4BC2AD87CC600A24968 /* PersistedKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistedKey.swift; sourceTree = "<group>"; };
@@ -114,7 +110,6 @@
 			children = (
 				DD3D35092AD879BD0083B4D9 /* TodoTable.swift */,
 				DD0AC4BA2AD87BF200A24968 /* ToDoCell.swift */,
-				DD0AC4B42AD87A4400A24968 /* SetTodoView.swift */,
 				DD0AC4B82AD87B3000A24968 /* RoundedTextField.swift */,
 			);
 			path = Components;
@@ -222,7 +217,6 @@
 			isa = PBXGroup;
 			children = (
 				DDD6C9132AD857E700327F9E /* HomeViewModel.swift */,
-				DD0AC4B62AD87A7200A24968 /* SetTodoViewModel.swift */,
 				DD0AC4BE2AD887B100A24968 /* TodoViewModel.swift */,
 			);
 			path = ViewModel;
@@ -385,7 +379,6 @@
 			files = (
 				DD0AC4BF2AD887B100A24968 /* TodoViewModel.swift in Sources */,
 				DD3D350A2AD879BD0083B4D9 /* TodoTable.swift in Sources */,
-				DD0AC4B72AD87A7200A24968 /* SetTodoViewModel.swift in Sources */,
 				DDD6C90D2AD8536100327F9E /* HomeView.swift in Sources */,
 				DDD6C91E2AD85DE800327F9E /* RealmService.swift in Sources */,
 				DDD6C9172AD8584F00327F9E /* ToDo.swift in Sources */,
@@ -394,7 +387,6 @@
 				DDD6C9112AD8539400327F9E /* SettingsView.swift in Sources */,
 				DD0AC4BD2AD87CC700A24968 /* PersistedKey.swift in Sources */,
 				DDD6C90B2AD852CD00327F9E /* MainView.swift in Sources */,
-				DD0AC4B52AD87A4400A24968 /* SetTodoView.swift in Sources */,
 				DDD6C9052AD850D600327F9E /* MyTab.swift in Sources */,
 				DD0AC4C12AD9378900A24968 /* TodoCategory.swift in Sources */,
 				DDD6C9092AD851FE00327F9E /* Coordinator.swift in Sources */,
