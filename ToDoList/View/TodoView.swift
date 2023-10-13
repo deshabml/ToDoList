@@ -26,22 +26,11 @@ struct TodoView: View {
                     Text(category.rawValue).tag(category)
                 }
             }
-            Button {
-                if let _ = viewModel.todo {
-                    viewModel.updateTodo()
-                } else {
-                    viewModel.saveTodo()
+            HStack {
+                buttonSave
+                if !isEdit {
+                    buttonCanchel
                 }
-                coordinator.getAllTodos()
-                dismissScreen()
-            } label: {
-                Text("Save")
-                    .padding(.horizontal, 40)
-                    .padding(.vertical, 12)
-                    .background(.blue)
-                    .cornerRadius(12)
-                    .foregroundColor(.white)
-                    .fontWeight(.bold)
             }
         }
         .background {
@@ -65,6 +54,43 @@ extension TodoView {
     private func dismissScreen() {
         withAnimation {
             coordinator.showSetTodoView = false
+        }
+    }
+}
+
+extension TodoView {
+
+    private var buttonSave: some View {
+        Button {
+            if let _ = viewModel.todo {
+                viewModel.updateTodo()
+            } else {
+                viewModel.saveTodo()
+            }
+            coordinator.getAllTodos()
+            dismissScreen()
+        } label: {
+            Text("Save")
+                .padding(.horizontal, 40)
+                .padding(.vertical, 12)
+                .background(.blue)
+                .cornerRadius(12)
+                .foregroundColor(.white)
+                .fontWeight(.bold)
+        }
+    }
+
+    private var buttonCanchel: some View {
+        Button {
+            dismissScreen()
+        } label: {
+            Text("Canchel")
+                .padding(.horizontal, 40)
+                .padding(.vertical, 12)
+                .background(.gray)
+                .cornerRadius(12)
+                .foregroundColor(.white)
+                .fontWeight(.bold)
         }
     }
 }
