@@ -15,8 +15,8 @@ struct TodoView: View {
 
     var body: some View {
         VStack(spacing: 16) {
-            RoundedTextField(text: $viewModel.taskTitle, placeholder: "Task name")
-            RoundedTextField(text: $viewModel.taskDescription, placeholder: "Task description")
+            textField(placeholder: "Task name", text: $viewModel.taskTitle)
+            textField(placeholder: "Task description", text: $viewModel.taskDescription)
             DatePicker("Deadline: ",
                        selection: $viewModel.deadline)
             .datePickerStyle(.compact)
@@ -92,5 +92,14 @@ extension TodoView {
                 .foregroundColor(.white)
                 .fontWeight(.bold)
         }
+    }
+
+    @ViewBuilder
+    private func textField(placeholder: String, text: Binding<String>) -> some View {
+        TextField(placeholder, text: text)
+            .padding()
+            .background(.white)
+            .cornerRadius(12)
+            .shadow(radius: 1)
     }
 }
