@@ -16,30 +16,8 @@ struct HomeView: View {
             ZStack {
                 TodoTable()
                     .environmentObject(coordinator)
-                if coordinator.todos.isEmpty {
-                    Text("There are no tasks yet! Add the first one!")
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(Color.white)
-                }
-                if coordinator.showSetTodoView {
-                    Rectangle()
-                        .ignoresSafeArea()
-                        .opacity(0.3)
-                        .onTapGesture {
-                            withAnimation {
-                                coordinator.showSetTodoView.toggle()
-                            }
-                        }
-                    TodoView(viewModel: TodoViewModel())
-                        .environmentObject(coordinator)
-                        .background {
-                            Image(.bg)
-                        }
-                        .transition(.move(edge: .bottom))
-                        .cornerRadius(18)
-                        .shadow(radius: 2)
-                        .padding()
-                }
+                thereIsNoTask()
+                popUpScreenTodoView()
             }
             .overlay(alignment: .bottomTrailing) {
                 buttonPlus()
@@ -78,6 +56,40 @@ extension HomeView {
                 .background(.mint)
                 .cornerRadius(40)
                 .padding(8)
+        }
+    }
+
+    private func thereIsNoTask() -> some View {
+        Group {
+            if coordinator.todos.isEmpty {
+                Text("There are no tasks yet! Add the first one!")
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(Color.white)
+            }
+        }
+    }
+
+    private func popUpScreenTodoView() -> some View {
+        Group {
+            if coordinator.showSetTodoView {
+                Rectangle()
+                    .ignoresSafeArea()
+                    .opacity(0.3)
+                    .onTapGesture {
+                        withAnimation {
+                            coordinator.showSetTodoView.toggle()
+                        }
+                    }
+                TodoView(viewModel: TodoViewModel())
+                    .environmentObject(coordinator)
+                    .background {
+                        Image(.bg)
+                    }
+                    .transition(.move(edge: .bottom))
+                    .cornerRadius(18)
+                    .shadow(radius: 2)
+                    .padding()
+            }
         }
     }
 }
