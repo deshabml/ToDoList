@@ -8,29 +8,32 @@
 import SwiftUI
 
 struct HomeView: View {
-
+    
     @EnvironmentObject var coordinator: Coordinator
-
+    
     var body: some View {
-        VStack {
-            ZStack {
-                TodoTable()
-                    .environmentObject(coordinator)
-                thereIsNoTask()
-                popUpScreenTodoView()
+        ZStack {
+            VStack {
+                if coordinator.todos.isEmpty {
+                    thereIsNoTask()
+                } else {
+                    TodoTable()
+                        .environmentObject(coordinator)
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background{
+                Image(.bgHome)
+                    .ignoresSafeArea()
+                    .scaledToFill()
+            }
+            .onAppear {
+                coordinator.getAllTodos()
             }
             .overlay(alignment: .bottomTrailing) {
                 buttonPlus()
             }
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background{
-            Image(.bgHome)
-                .ignoresSafeArea()
-                .scaledToFill()
-        }
-        .onAppear {
-            coordinator.getAllTodos()
+            popUpScreenTodoView()
         }
     }
 }
@@ -41,7 +44,7 @@ struct HomeView: View {
 }
 
 extension HomeView {
-
+    
     private func buttonPlus() -> some View {
         Button {
             withAnimation {
@@ -58,17 +61,14 @@ extension HomeView {
                 .padding(8)
         }
     }
-
+    
     private func thereIsNoTask() -> some View {
-        Group {
-            if coordinator.todos.isEmpty {
-                Text("There are no tasks yet! Add the first one!")
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color.white)
-            }
-        }
+        Text("There are no tasks yet! Add the first one!")
+            .padding()
+            .background(.white)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
     }
-
+    
     private func popUpScreenTodoView() -> some View {
         Group {
             if coordinator.showSetTodoView {
