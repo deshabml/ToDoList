@@ -12,6 +12,7 @@
 		DD0AC4BD2AD87CC700A24968 /* PersistedKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0AC4BC2AD87CC600A24968 /* PersistedKey.swift */; };
 		DD0AC4BF2AD887B100A24968 /* TodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0AC4BE2AD887B100A24968 /* TodoViewModel.swift */; };
 		DD0AC4C12AD9378900A24968 /* TodoCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0AC4C02AD9378900A24968 /* TodoCategory.swift */; };
+		DD0AC4C42AD9705300A24968 /* ToDoCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0AC4C32AD9705300A24968 /* ToDoCellViewModel.swift */; };
 		DD3D35052AD86DAB0083B4D9 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = DD3D35042AD86DAB0083B4D9 /* Realm */; };
 		DD3D35072AD86DAB0083B4D9 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DD3D35062AD86DAB0083B4D9 /* RealmSwift */; };
 		DD3D350A2AD879BD0083B4D9 /* TodoTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D35092AD879BD0083B4D9 /* TodoTable.swift */; };
@@ -28,7 +29,6 @@
 		DDD6C90D2AD8536100327F9E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD6C90C2AD8536100327F9E /* HomeView.swift */; };
 		DDD6C90F2AD8537800327F9E /* TodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD6C90E2AD8537800327F9E /* TodoView.swift */; };
 		DDD6C9112AD8539400327F9E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD6C9102AD8539400327F9E /* SettingsView.swift */; };
-		DDD6C9142AD857E700327F9E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD6C9132AD857E700327F9E /* HomeViewModel.swift */; };
 		DDD6C9172AD8584F00327F9E /* ToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD6C9162AD8584F00327F9E /* ToDo.swift */; };
 		DDD6C91E2AD85DE800327F9E /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD6C91D2AD85DE800327F9E /* RealmService.swift */; };
 /* End PBXBuildFile section */
@@ -56,6 +56,7 @@
 		DD0AC4BC2AD87CC600A24968 /* PersistedKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistedKey.swift; sourceTree = "<group>"; };
 		DD0AC4BE2AD887B100A24968 /* TodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModel.swift; sourceTree = "<group>"; };
 		DD0AC4C02AD9378900A24968 /* TodoCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCategory.swift; sourceTree = "<group>"; };
+		DD0AC4C32AD9705300A24968 /* ToDoCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoCellViewModel.swift; sourceTree = "<group>"; };
 		DD3D35092AD879BD0083B4D9 /* TodoTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTable.swift; sourceTree = "<group>"; };
 		DDD6C8D32AD8480800327F9E /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD6C8D62AD8480800327F9E /* ToDoListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListApp.swift; sourceTree = "<group>"; };
@@ -73,7 +74,6 @@
 		DDD6C90C2AD8536100327F9E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		DDD6C90E2AD8537800327F9E /* TodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoView.swift; sourceTree = "<group>"; };
 		DDD6C9102AD8539400327F9E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		DDD6C9132AD857E700327F9E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		DDD6C9162AD8584F00327F9E /* ToDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDo.swift; sourceTree = "<group>"; };
 		DDD6C91D2AD85DE800327F9E /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,6 +105,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DD0AC4C22AD9703500A24968 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				DD0AC4C32AD9705300A24968 /* ToDoCellViewModel.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		DD3D35082AD8798A0083B4D9 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,7 +186,6 @@
 		DDD6C9002AD84CA700327F9E /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				DDD6C9042AD850D600327F9E /* MyTab.swift */,
 				DDD6C9062AD8512900327F9E /* MyPage.swift */,
 				DDD6C9082AD851FE00327F9E /* Coordinator.swift */,
 			);
@@ -207,6 +214,7 @@
 				DDD6C90A2AD852CD00327F9E /* MainView.swift */,
 				DDD6C90C2AD8536100327F9E /* HomeView.swift */,
 				DDD6C90E2AD8537800327F9E /* TodoView.swift */,
+				DDD6C9042AD850D600327F9E /* MyTab.swift */,
 				DDD6C9102AD8539400327F9E /* SettingsView.swift */,
 				DD3D35082AD8798A0083B4D9 /* Components */,
 			);
@@ -216,8 +224,8 @@
 		DDD6C9122AD857CE00327F9E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				DDD6C9132AD857E700327F9E /* HomeViewModel.swift */,
 				DD0AC4BE2AD887B100A24968 /* TodoViewModel.swift */,
+				DD0AC4C22AD9703500A24968 /* Components */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -379,10 +387,10 @@
 			files = (
 				DD0AC4BF2AD887B100A24968 /* TodoViewModel.swift in Sources */,
 				DD3D350A2AD879BD0083B4D9 /* TodoTable.swift in Sources */,
+				DD0AC4C42AD9705300A24968 /* ToDoCellViewModel.swift in Sources */,
 				DDD6C90D2AD8536100327F9E /* HomeView.swift in Sources */,
 				DDD6C91E2AD85DE800327F9E /* RealmService.swift in Sources */,
 				DDD6C9172AD8584F00327F9E /* ToDo.swift in Sources */,
-				DDD6C9142AD857E700327F9E /* HomeViewModel.swift in Sources */,
 				DDD6C90F2AD8537800327F9E /* TodoView.swift in Sources */,
 				DDD6C9112AD8539400327F9E /* SettingsView.swift in Sources */,
 				DD0AC4BD2AD87CC700A24968 /* PersistedKey.swift in Sources */,

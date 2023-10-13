@@ -62,7 +62,7 @@ extension TodoTable {
         Button {
             coordinator.goToDoDetail(coordinator.actualTodos[index])
         } label: {
-            ToDoCell(todo: coordinator.actualTodos[index])
+            ToDoCell(viewModel: ToDoCellViewModel(todo: coordinator.actualTodos[index]))
         }
         .swipeActions(edge: .trailing, allowsFullSwipe: true) {
             Button {
@@ -91,7 +91,11 @@ extension TodoTable {
                 Text(coordinator.completedTodos[index].title)
                 Spacer()
                 Text(coordinator.completedTodos[index].category)
-            }                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+            }
+            .padding()
+            .background(Color(.liteGrey).opacity(0.5))
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                 Button {
                     coordinator.deleteTodo(coordinator.completedTodos[index])
                 } label: {

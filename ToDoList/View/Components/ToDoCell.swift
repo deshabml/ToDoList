@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ToDoCell: View {
 
-    var todo: ToDo
+    @StateObject var viewModel: ToDoCellViewModel
 
     var body: some View {
         HStack {
@@ -20,11 +20,11 @@ struct ToDoCell: View {
                         .foregroundColor(
                             getColor()
                         )
-                    Text(todo.title).bold()
+                    Text(viewModel.todo.title).bold()
                     Spacer()
 
                 }
-                Text(todo.taskDescription)
+                Text(viewModel.todo.taskDescription)
 
             }
             VStack(alignment: .trailing) {
@@ -36,7 +36,7 @@ struct ToDoCell: View {
                     .background(getColor())
             }
         }.padding()
-            .background(Color(.liteGrey))
+            .background(Color(.liteGrey).opacity(0.8))
             .cornerRadius(12)
             .shadow(radius: 1)
     }
@@ -45,16 +45,16 @@ struct ToDoCell: View {
 
 
 #Preview {
-    ToDoCell(todo: ToDo(title: "Task title",
-                        descrioption: "Task descrioption",
-                        deadline: Date(),
-                        category: .notUrgentImp))
+    ToDoCell(viewModel: ToDoCellViewModel(todo: ToDo(title: "Task title",
+                                                     descrioption: "Task descrioption",
+                                                     deadline: Date(),
+                                                     category: .notUrgentImp)))
 }
 
 extension ToDoCell {
 
     func getDate() -> String {
-        let deadline = todo.deadline
+        let deadline = viewModel.todo.deadline
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
         let str = formatter.string(from: deadline)
@@ -62,7 +62,7 @@ extension ToDoCell {
     }
 
     func getTime() -> String {
-        let deadline = todo.deadline
+        let deadline = viewModel.todo.deadline
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
         let str = formatter.string(from: deadline)
@@ -71,7 +71,7 @@ extension ToDoCell {
 
 
     func getColor() -> Color {
-        switch todo.category {
+        switch viewModel.todo.category {
         case TodoCategory.urgentImp.rawValue:
             return .green
         case TodoCategory.urgentNotImp.rawValue:
