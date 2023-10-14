@@ -10,12 +10,13 @@ import RealmSwift
 
 class RealmService {
     
-    static let shared = RealmService(); private init() { }
+    static let shared = RealmService()
     private let db = try! Realm()
-
     var config: Realm.Configuration {
         db.configuration
     }
+
+    private init() { }
 
     func createTodo(todo: ToDo, completion: () -> ()) {
         do {

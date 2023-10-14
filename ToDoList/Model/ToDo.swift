@@ -19,7 +19,7 @@ class ToDo: Object, Identifiable {
 
     convenience init(title: String, descrioption: String, deadline: Date, category: TodoCategory) {
         self.init()
-        self.id = UUID().uuidString //Universal Unique IDentifier
+        self.id = UUID().uuidString 
         self.title = title
         self.taskDescription = descrioption
         self.deadline = deadline

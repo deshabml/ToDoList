@@ -15,7 +15,7 @@ class TodoViewModel: ObservableObject {
     @Published var deadline: Date = Date(timeIntervalSinceNow: 60 * 60 * 24)
     let categories = TodoCategory.allCases
     var newTask = true
-    var todo: ToDo?
+    var todo: ToDo = ToDo()
 
     func setup(todo: ToDo) {
         self.newTask = false
@@ -28,27 +28,23 @@ class TodoViewModel: ObservableObject {
 
     func saveTodo() {
         guard !taskTitle.isEmpty else { return }
-
-        let todo = ToDo(title: taskTitle,
-                        descrioption: taskDescription,
-                        deadline: deadline,
-                        category: taskCategory)
-
+        let todo = ToDo(title: self.taskTitle,
+                        descrioption: self.taskDescription,
+                        deadline: self.deadline,
+                        category: self.taskCategory)
         RealmService.shared.createTodo(todo: todo) {
-            print("Задача \(todo) создана!")
+            print("Task \(todo) created!")
         }
     }
 
     func updateTodo() {
-        guard let todo else { return }
-
+        guard !todo.title.isEmpty else { return }
         RealmService.shared.updateTodo(todo,
                                        title: taskTitle,
                                        desc: taskDescription,
                                        categ: taskCategory.rawValue,
                                        deadline: deadline) {
-            print("Задача \(todo) изменена!")
+            print("Task \(todo) changed!")
         }
     }
-
 }

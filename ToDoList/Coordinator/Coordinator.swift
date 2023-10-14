@@ -13,10 +13,21 @@ final class Coordinator: ObservableObject {
     @Published var path = NavigationPath()
     @Published var page: MyPage = .home
     @Published var tab: MyTab = MyTab.home
-    @Published var showSetTodoView: Bool = false
-    @Published var todos: [ToDo] = []
-    var actualTodos: [ToDo] { todos.filter { !$0.completed } }
-    var completedTodos: [ToDo] { todos.filter { $0.completed } }
+    @Published var showSetTodoView: Bool = false {
+        didSet {
+            todoVM.setup(todo: ToDo())
+        }
+    }
+    @Published var todos: [ToDo] = [] {
+        didSet {
+            self.actualTodos = todos.filter { !$0.completed }
+            self.completedTodos = todos.filter { $0.completed }
+        }
+    }
+    @Published var showTodos: Bool = true
+    @Published var actualTodos: [ToDo] = []
+    @Published var completedTodos: [ToDo] = []
+    @Published var todoVM = TodoViewModel()
     var showArchive: Bool {
         let showArchive = UserDefaults.standard.bool(forKey: PersistedKey.showArchive.rawValue)
         return showArchive
@@ -47,16 +58,14 @@ final class Coordinator: ObservableObject {
                 SettingsView()
         }
     }
-
 }
 
 extension Coordinator {
 
     func deleteTodo(_ todo: ToDo) {
-
-        todos.removeAll()
         RealmService.shared.deleteTodo(todo) {
             getAllTodos()
+            showTodos = true
         }
     }
 
@@ -73,6 +82,13 @@ extension Coordinator {
     }
 
     func getAllTodos() {
-        self.todos = RealmService.shared.getTodos()
+        todos = RealmService.shared.getTodos()
+    }
+
+    func notShowToDos(todo: ToDo) {
+        showTodos = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(400)) { [unowned self] in
+            deleteTodo(todo)
+        }
     }
 }

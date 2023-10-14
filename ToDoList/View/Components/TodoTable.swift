@@ -10,13 +10,15 @@ import SwiftUI
 struct TodoTable: View {
 
     @EnvironmentObject var coordinator: Coordinator
+    var columns = [GridItem(.flexible())]
+
 
     var body: some View {
         List {
             if !coordinator.actualTodos.isEmpty {
                 Section {
-                    ForEach(0 ..< coordinator.actualTodos.count, id: \.self) { index in
-                        buttonCellActulalTodos(index: index)
+                    ForEach(coordinator.actualTodos) { todo in
+                        buttonCellActulalTodos(todo: todo)
                     }
                     .listRowBackground(Color.clear)
                 } header: {
@@ -29,8 +31,8 @@ struct TodoTable: View {
             }
             if (!coordinator.completedTodos.isEmpty && coordinator.showArchive) {
                 Section {
-                    ForEach(0 ..< coordinator.completedTodos.count, id: \.self) { index in
-                        buttonCellCompletedTodos(index: index)
+                    ForEach(coordinator.completedTodos) { todo in
+                        buttonCellCompletedTodos(todo: todo)
                     }
                     .listRowBackground(Color.clear)
                 } header: {
@@ -58,15 +60,15 @@ struct TodoTable: View {
 extension TodoTable {
 
     @ViewBuilder
-    private func buttonCellActulalTodos(index: Int) -> some View {
+    private func buttonCellActulalTodos(todo: ToDo) -> some View {
         Button {
-            coordinator.goToDoDetail(coordinator.actualTodos[index])
+            coordinator.goToDoDetail(todo)
         } label: {
-            ToDoCell(viewModel: ToDoCellViewModel(todo: coordinator.actualTodos[index]))
+            ToDoCell(viewModel: ToDoCellViewModel(todo: todo))
         }
         .swipeActions(edge: .trailing, allowsFullSwipe: true) {
             Button {
-                coordinator.deleteTodo(coordinator.actualTodos[index])
+                coordinator.notShowToDos(todo: todo)
             } label: {
                 Image(systemName: "trash")
             }
@@ -74,7 +76,7 @@ extension TodoTable {
         }
         .swipeActions(edge: .leading, allowsFullSwipe: true) {
             Button {
-                coordinator.completeTodo(coordinator.actualTodos[index])
+                coordinator.completeTodo(todo)
             } label: {
                 Image(systemName: "checkmark")
             }
@@ -83,21 +85,21 @@ extension TodoTable {
     }
 
     @ViewBuilder
-    private func buttonCellCompletedTodos(index: Int) -> some View {
+    private func buttonCellCompletedTodos(todo: ToDo) -> some View {
         Button {
-            coordinator.goToDoDetail(coordinator.completedTodos[index])
+            coordinator.goToDoDetail(todo)
         } label: {
             HStack {
-                Text(coordinator.completedTodos[index].title)
+                Text(todo.title)
                 Spacer()
-                Text(coordinator.completedTodos[index].category)
+                Text(todo.category)
             }
             .padding()
             .background(Color(.liteGrey).opacity(0.5))
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                 Button {
-                    coordinator.deleteTodo(coordinator.completedTodos[index])
+                    coordinator.notShowToDos(todo: todo)
                 } label: {
                     Image(systemName: "trash")
                 }
@@ -105,7 +107,7 @@ extension TodoTable {
             }
             .swipeActions(edge: .leading, allowsFullSwipe: true) {
                 Button {
-                    coordinator.decompleteTodo(coordinator.completedTodos[index])
+                    coordinator.decompleteTodo(todo)
                 } label: {
                     Image(systemName: "arrow.uturn.left")
                 }
