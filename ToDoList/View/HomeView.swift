@@ -17,8 +17,10 @@ struct HomeView: View {
                 if coordinator.todos.isEmpty {
                     thereIsNoTask
                 } else {
-                    TodoTable()
-                        .environmentObject(coordinator)
+                    if coordinator.showTodos {
+                        TodoTable()
+                            .environmentObject(coordinator)
+                    }
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -32,6 +34,8 @@ struct HomeView: View {
             }
             popUpScreenTodoView
         }
+        .animation(Animation.easeInOut(duration: 0.1), value: coordinator.showTodos)
+
     }
 }
 
@@ -77,7 +81,7 @@ extension HomeView {
                             coordinator.showSetTodoView.toggle()
                         }
                     }
-                TodoView(viewModel: TodoViewModel())
+                TodoView(viewModel: coordinator.todoVM)
                     .environmentObject(coordinator)
                     .transition(.move(edge: .bottom))
                     .cornerRadius(18)

@@ -52,6 +52,8 @@ struct TodoView: View {
 extension TodoView {
 
     private func dismissScreen() {
+        coordinator.todo = ToDo()
+        viewModel.todo = ToDo()
         withAnimation {
             coordinator.showSetTodoView = false
         }
@@ -62,13 +64,19 @@ extension TodoView {
 
     private var buttonSave: some View {
         Button {
-            if let _ = viewModel.todo {
-                viewModel.updateTodo()
-            } else {
-                viewModel.saveTodo()
+            if !viewModel.taskTitle.isEmpty {
+                if !viewModel.todo.title.isEmpty {
+                    viewModel.updateTodo()
+                } else {
+                    viewModel.saveTodo()
+                }
+                coordinator.getAllTodos()
+                if isEdit {
+                    coordinator.goHome()
+                } else {
+                    dismissScreen()
+                }
             }
-            coordinator.getAllTodos()
-            dismissScreen()
         } label: {
             Text("Save")
                 .padding(.horizontal, 40)
